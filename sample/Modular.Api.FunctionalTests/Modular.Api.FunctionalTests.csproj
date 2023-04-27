@@ -26,6 +26,9 @@
 
     <ItemGroup>
       <None Remove="appsettings.Test.json" />
+      <None Update="xunit.runner.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
     <ItemGroup>
