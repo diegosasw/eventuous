@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>False</IsPackable>
+        <IsPublishable>True</IsPublishable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Eventuous.AspNetCore.Web" Version="0.13.1" />
+      <PackageReference Include="Serilog" />
+      <PackageReference Include="Serilog.AspNetCore" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\Extensions\src\Eventuous.AspNetCore.Web\Eventuous.AspNetCore.Web.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>False</IsPackable>
+        <IsPublishable>True</IsPublishable>
+    </PropertyGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\Core\src\Eventuous.Subscriptions\Eventuous.Subscriptions.csproj" />
+      <ProjectReference Include="..\..\src\Mongo\src\Eventuous.Projections.MongoDB\Eventuous.Projections.MongoDB.csproj" />
+      <ProjectReference Include="..\Modular.Clients\Modular.Clients.csproj" />
+    </ItemGroup>
+
+</Project>
