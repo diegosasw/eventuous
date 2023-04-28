@@ -216,6 +216,9 @@ public class SubscriptionBuilder<T, TOptions> : SubscriptionBuilder
 
         var (ctor, parameters, parameter) = constructors[0];
 
+        // Uncomment this line to get constructor parameters again
+        // parameters = ctor.GetParameters();
+
         var args = parameters.Select(CreateArg).ToArray();
 
         if (ctor.Invoke(args) is not T instance) throw new InvalidOperationException($"Unable to instantiate {typeof(T)}");
