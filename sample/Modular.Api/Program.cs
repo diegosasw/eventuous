@@ -1,27 +1,6 @@
 using Modular.Api;
 using Modular.Clients;
-using Serilog;
-using Serilog.Events;
-
-var serilogLogger =
-    new LoggerConfiguration()
-        .MinimumLevel.Debug()
-        .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-        .MinimumLevel.Override("Microsoft.AspNetCore.Hosting.Diagnostics", LogEventLevel.Warning)
-        .MinimumLevel.Override("Microsoft.AspNetCore.Routing", LogEventLevel.Warning)
-        .MinimumLevel.Override("Grpc", LogEventLevel.Information)
-        .MinimumLevel.Override("EventStore", LogEventLevel.Information)
-        .Enrich.FromLogContext()
-        .WriteTo.Console(
-            outputTemplate:
-            "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj} <s:{SourceContext}>{NewLine}{Exception}"
-        )
-        .CreateLogger();
-
-Log.Logger = serilogLogger;
-
 var builder = WebApplication.CreateBuilder(args);
-builder.Host.UseSerilog();
 
 var configuration = builder.Configuration;
 var services = builder.Services;
@@ -38,8 +17,6 @@ var openApiRelativePath = $"{assemblyPath}/swagger/v1/swagger.json";
 var openApiName = "Eventuous Modular";
 
 var app = builder.Build();
-app.UseSerilogRequestLogging();
-app.UseEventuousLogs();
 app.UsePathBase(assemblyPath);
         
 if (app.Environment.IsDevelopment())
@@ -47,12 +24,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-app.UseSerilogRequestLogging();
 app.UseRouting();
-app.UseSwagger();
-app.UseSwaggerUI(options => options.SwaggerEndpoint(openApiRelativePath, openApiName));
-//app.UseAuthentication();
-//app.UseAuthorization();
 app.AddClientCommands();
 app.MapGet("/health", () =>
 {
