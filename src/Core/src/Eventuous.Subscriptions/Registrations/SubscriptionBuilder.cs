@@ -242,6 +242,8 @@ public class SubscriptionBuilder<T, TOptions> : SubscriptionBuilder
                 return options.Get(SubscriptionId);
             }
 
+            // Options parameter should have been captured previously, but missed.
+            // ParameterInfo and Parameter will refer to the same parameter, but will have different HashCodes
             if(parameterInfo.ParameterType.Name == "AllStreamSubscriptionOptions")
             {
                 var h1 = parameterInfo.GetHashCode();
